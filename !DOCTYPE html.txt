@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>김진서의 페이지</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            scroll-behavior: smooth;
+        }
+
+        /* 1. 히어로 메인 섹션 (첫 화면) */
+        .hero-section {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, #1e1e2f 0%, #0f0f1a 100%);
+            padding: 20px;
+            position: relative;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            color: #64ffda;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .hero-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            line-height: 1.2;
+            color: #ffffff;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: #a0aec0;
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #888;
+            font-size: 0.85rem;
+            text-decoration: none;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-down svg {
+            width: 24px;
+            height: 24px;
+            fill: #888;
+            margin-top: 8px;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        /* 2. 스크롤하여 연결될 컨텐츠 섹션 */
+        .content-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .page-frame {
+            width: 100%;
+            border: none;
+            border-radius: 12px;
+            background-color: #ffffff;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            min-height: 600px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 메인 인삿말 섹션 -->
+    <section class="hero-section">
+        <span class="badge">WELCOME</span>
+        <h1 class="hero-title">환영합니다!</h1>
+        <h2 class="hero-subtitle">김진서의 페이지입니다.</h2>
+        
+        <a href="#content" class="scroll-down">
+            <span>아래로 스크롤하세요</span>
+            <svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>
+        </a>
+    </section>
+
+    <!-- 스크롤 시 순서대로 보일 01.html ~ 06.html 페이지들 -->
+    <main id="content" class="content-container">
+        <iframe src="01.html" class="page-frame" onload="resizeIframe(this)"></iframe>
+        <iframe src="02.html" class="page-frame" onload="resizeIframe(this)"></iframe>
+        <iframe src="03.html" class="page-frame" onload="resizeIframe(this)"></iframe>
+        <iframe src="04.html" class="page-frame" onload="resizeIframe(this)"></iframe>
+        <iframe src="05.html" class="page-frame" onload="resizeIframe(this)"></iframe>
+        <iframe src="06.html" class="page-frame" onload="resizeIframe(this)"></iframe>
+    </main>
+
+    <script>
+        // 각 하위 HTML 파일의 내용 길이에 맞춰 높이를 자동 조절해주는 스크립트
+        function resizeIframe(obj) {
+            try {
+                obj.style.height = obj.contentWindow.document.documentElement.scrollHeight + 'px';
+            } catch(e) {
+                obj.style.height = '800px'; // 도메인/CORS 문제 발생 시 기본 높이 지정
+            }
+        }
+    </script>
+
+</body>
+</html>
