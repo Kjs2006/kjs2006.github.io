@@ -3,139 +3,183 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#10131b">
-  <meta name="description" content="요즘 스팀에서 인기 있는 게임 30선을 장르별로 소개합니다.">
+  <meta name="theme-color" content="#ffd42a">
+  <meta name="description" content="스팀에서 많이 플레이되는 게임 30선을 장르별로 소개합니다.">
   <title>Steam 인기 게임 30선 | 김진서의 게임 아카이브</title>
   <style>
-    :root { color-scheme: dark; --bg:#10131b; --panel:#1b202b; --text:#f3f5fb; --muted:#a5adbd; --line:rgba(255,255,255,.09); --accent:#8bc53f; --blue:#66c0f4; }
+    :root { --ink:#202321; --muted:#737a77; --teal:#16a892; --yellow:#ffd42a; --paper:#fff; --soft:#f5f7f4; --line:#e8ece9; }
     * { box-sizing:border-box; }
     html { scroll-behavior:smooth; }
-    body {
-      margin:0; min-width:320px; color:var(--text);
-      background:radial-gradient(ellipse at 5% 0%,rgba(102,192,244,.16),transparent 34rem),linear-gradient(160deg,#10131b,#151a23 55%,#10131b);
-      font-family:Pretendard,"Noto Sans KR",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; line-height:1.6;
-    }
+    body { margin:0; color:var(--ink); background:var(--paper); font-family:Pretendard,"Noto Sans KR",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; line-height:1.65; }
     a { color:inherit; }
-    a:focus-visible,button:focus-visible { outline:3px solid var(--blue); outline-offset:4px; }
-    .wrap { width:min(1100px,calc(100% - 40px)); margin-inline:auto; }
-    .top { display:flex; align-items:center; justify-content:space-between; min-height:70px; border-bottom:1px solid var(--line); }
-    .brand { display:flex; align-items:center; gap:10px; font-weight:800; text-decoration:none; letter-spacing:-.03em; }
-    .brand-icon { display:grid; place-items:center; width:36px; height:36px; border-radius:11px; background:#1b2838; color:var(--blue); font-size:20px; }
-    .back { color:var(--muted); text-decoration:none; font-size:.9rem; }
-    .back:hover { color:var(--blue); }
-    .hero { padding:66px 0 34px; }
-    .eyebrow { color:var(--accent); font-size:.78rem; font-weight:800; letter-spacing:.13em; }
-    h1 { margin:10px 0 12px; font-size:clamp(2.2rem,6vw,4rem); line-height:1.1; letter-spacing:-.06em; }
-    .lead { max-width:720px; margin:0; color:var(--muted); font-size:1.02rem; }
-    .source-note { display:flex; flex-wrap:wrap; gap:8px 18px; margin-top:20px; color:#8792a4; font-size:.8rem; }
-    .source-note a { color:var(--blue); text-decoration:none; }
-    .toolbar { display:flex; align-items:end; justify-content:space-between; gap:15px; margin:25px 0 16px; }
-    .toolbar h2 { margin:0; font-size:1.25rem; letter-spacing:-.03em; }
+    a:focus-visible,button:focus-visible { outline:3px solid var(--teal); outline-offset:4px; }
+    .wrap { width:min(1160px,calc(100% - 44px)); margin-inline:auto; }
+    .utility { background:var(--yellow); font-size:.78rem; font-weight:750; }
+    .utility-in { display:flex; justify-content:space-between; gap:12px; min-height:34px; align-items:center; }
+    .utility a { text-decoration:none; }
+    .nav { display:flex; justify-content:space-between; align-items:center; min-height:76px; }
+    .brand { display:flex; align-items:center; gap:10px; color:var(--teal); font-size:1.22rem; font-weight:900; letter-spacing:-.055em; text-decoration:none; }
+    .brand-mark { display:grid; place-items:center; width:40px; height:40px; border-radius:50%; background:#e4f7f2; font-size:21px; }
+    .navlinks { display:flex; align-items:center; gap:25px; }
+    .navlinks a { font-size:.9rem; font-weight:750; text-decoration:none; }
+    .navlinks a:hover,.navlinks .active { color:var(--teal); }
+    .hero { position:relative; min-height:390px; display:grid; place-items:center; overflow:hidden; isolation:isolate; background:#182328; color:white; }
+    .hero-art { position:absolute; z-index:-2; inset:-50px; display:grid; grid-template-columns:repeat(7,1fr); gap:12px; transform:rotate(-7deg) scale(1.13); opacity:.78; }
+    .hero-tile { display:grid; place-items:center; min-height:140px; border:4px solid rgba(255,255,255,.14); border-radius:10px; font-size:clamp(2rem,4.5vw,4.3rem); box-shadow:0 12px 35px rgba(0,0,0,.3); }
+    .hero-tile:nth-child(5n+1) { background:linear-gradient(135deg,#314e73,#77a5bf); }
+    .hero-tile:nth-child(5n+2) { background:linear-gradient(135deg,#5d426d,#d28b64); }
+    .hero-tile:nth-child(5n+3) { background:linear-gradient(135deg,#346b5a,#b7bb66); }
+    .hero-tile:nth-child(5n+4) { background:linear-gradient(135deg,#aa4c43,#eab44e); }
+    .hero-tile:nth-child(5n) { background:linear-gradient(135deg,#42517c,#8ca8dd); }
+    .shade { position:absolute; z-index:-1; inset:0; background:linear-gradient(90deg,rgba(10,17,21,.83),rgba(10,17,21,.48),rgba(10,17,21,.8)); }
+    .hero-copy { width:min(850px,calc(100% - 34px)); padding:63px 0; text-align:center; }
+    .crumb { color:rgba(255,255,255,.8); font-size:.82rem; }
+    .eyebrow { color:var(--yellow); font-size:.78rem; font-weight:900; letter-spacing:.14em; }
+    h1 { margin:13px 0 12px; font-size:clamp(2.2rem,6vw,4rem); line-height:1.17; letter-spacing:-.06em; }
+    .hero-copy p { max-width:680px; margin:0 auto; color:rgba(255,255,255,.84); }
+    .source-note { display:flex; justify-content:center; flex-wrap:wrap; gap:7px 18px; margin-top:20px; color:rgba(255,255,255,.7); font-size:.78rem; }
+    .source-note a { color:#c9f07a; text-decoration:none; }
+    .section { padding:62px 0; }
+    .heading { max-width:760px; margin:0 auto 30px; text-align:center; }
+    .heading .eyebrow { color:var(--teal); }
+    .heading h2 { margin:8px 0; font-size:clamp(1.8rem,4vw,2.45rem); line-height:1.25; letter-spacing:-.055em; }
+    .heading p { margin:0; color:var(--muted); }
+    .summary { display:flex; justify-content:center; flex-wrap:wrap; gap:10px; margin-top:19px; }
+    .summary span { padding:6px 13px; border:1px solid var(--line); border-radius:999px; background:white; color:#555e59; font-size:.82rem; font-weight:750; }
+    .list-area { background:var(--soft); }
+    .toolbar { display:flex; justify-content:space-between; align-items:end; gap:15px; margin:0 0 17px; }
+    .toolbar h2 { margin:0; font-size:1.35rem; letter-spacing:-.035em; }
     .result-count { color:var(--muted); font-size:.88rem; }
-    .games { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:13px; }
-    .game {
-      display:grid; grid-template-columns:52px minmax(0,1fr) auto; align-items:center; gap:15px;
-      min-height:132px; padding:19px; border:1px solid var(--line); border-radius:17px;
-      background:linear-gradient(135deg,rgba(31,38,51,.98),rgba(24,29,40,.92));
-      transition:transform .18s ease,border-color .18s ease,background .18s ease;
-    }
-    .game:hover { transform:translateY(-3px); border-color:rgba(102,192,244,.38); background:#202a37; }
-    .rank { color:#657287; font-size:.76rem; font-weight:850; letter-spacing:.1em; }
-    .game-icon { display:grid; place-items:center; width:50px; height:50px; margin-top:3px; border:1px solid var(--line); border-radius:15px; background:rgba(255,255,255,.04); font-size:25px; }
-    .game h3 { margin:0 0 3px; font-size:1.06rem; line-height:1.35; letter-spacing:-.02em; }
-    .genre { color:var(--blue); font-size:.76rem; font-weight:700; }
-    .game p { margin:7px 0 0; color:var(--muted); font-size:.85rem; }
-    .store-link { display:inline-flex; align-items:center; gap:6px; align-self:center; padding:9px 11px; border:1px solid rgba(102,192,244,.24); border-radius:10px; color:var(--blue); font-size:.8rem; font-weight:750; text-decoration:none; white-space:nowrap; }
-    .store-link:hover { background:rgba(102,192,244,.1); }
-    .pagination { display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:8px; padding:28px 0 62px; }
-    .page-button { min-width:42px; height:42px; padding:0 13px; border:1px solid var(--line); border-radius:12px; background:#1b202b; color:var(--text); font:inherit; font-weight:700; cursor:pointer; }
-    .page-button:hover:not(:disabled) { border-color:var(--blue); color:var(--blue); }
-    .page-button[aria-current="page"] { border-color:var(--accent); background:var(--accent); color:#182011; }
-    .page-button:disabled { opacity:.4; cursor:not-allowed; }
-    footer { border-top:1px solid var(--line); color:var(--muted); font-size:.84rem; }
-    .foot { display:flex; justify-content:space-between; gap:15px; padding:22px 0 30px; }
+    .games { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:19px; }
+    .game { overflow:hidden; border:1px solid var(--line); background:white; box-shadow:0 4px 15px rgba(31,50,42,.045); transition:transform .2s ease,box-shadow .2s ease; }
+    .game:hover { transform:translateY(-4px); box-shadow:0 14px 30px rgba(31,50,42,.12); }
+    .poster { position:relative; display:grid; place-items:center; min-height:160px; overflow:hidden; background:linear-gradient(135deg,var(--c1),var(--c2)); color:white; }
+    .poster::before,.poster::after { content:""; position:absolute; width:170px; height:170px; border:1px solid rgba(255,255,255,.35); border-radius:50%; }
+    .poster::before { transform:translate(-88px,62px); }
+    .poster::after { transform:translate(105px,-79px); }
+    .poster-icon { position:relative; z-index:1; font-size:4.1rem; filter:drop-shadow(0 8px 9px rgba(0,0,0,.2)); }
+    .poster-rank { position:absolute; z-index:1; top:12px; left:14px; font-size:.72rem; font-weight:900; letter-spacing:.12em; }
+    .poster-label { position:absolute; z-index:1; right:13px; bottom:11px; color:rgba(255,255,255,.85); font-size:.68rem; font-weight:800; letter-spacing:.1em; }
+    .game-copy { padding:17px 18px 18px; }
+    .genre { display:inline-block; margin-bottom:7px; color:var(--teal); font-size:.74rem; font-weight:850; }
+    .game h3 { margin:0; font-size:1.05rem; line-height:1.4; letter-spacing:-.025em; }
+    .game p { min-height:4.4em; margin:7px 0 14px; color:var(--muted); font-size:.85rem; }
+    .store-link { display:flex; justify-content:center; align-items:center; gap:7px; min-height:39px; border:1px solid #d9eee9; border-radius:4px; background:#f1fbf8; color:#168a77; font-size:.82rem; font-weight:850; text-decoration:none; }
+    .store-link:hover { background:var(--teal); color:white; }
+    .pagination { display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:8px; padding:28px 0 60px; }
+    .page-button { min-width:42px; height:42px; padding:0 13px; border:1px solid #dfe5e1; border-radius:4px; background:white; color:var(--ink); font:inherit; font-weight:750; cursor:pointer; }
+    .page-button:hover:not(:disabled) { border-color:var(--teal); color:var(--teal); }
+    .page-button[aria-current="page"] { border-color:var(--teal); background:var(--teal); color:white; }
+    .page-button:disabled { opacity:.42; cursor:not-allowed; }
+    footer { border-top:1px solid var(--line); }
+    .foot { display:flex; justify-content:space-between; gap:15px; padding:24px 0 31px; color:var(--muted); font-size:.84rem; }
     .foot p { margin:0; }
-    .foot a { color:var(--blue); text-decoration:none; }
-    @media (max-width:700px) {
-      .wrap { width:min(100% - 28px,520px); }
-      .hero { padding:49px 0 27px; }
-      .games { grid-template-columns:1fr; }
-      .game { grid-template-columns:45px minmax(0,1fr); gap:12px; padding:16px; }
-      .rank { grid-column:1; grid-row:1; align-self:start; }
-      .game-icon { grid-column:1; grid-row:2; width:43px; height:43px; font-size:22px; }
-      .game-info { grid-column:2; grid-row:1 / span 2; }
-      .store-link { grid-column:2; justify-self:start; margin-top:2px; }
+    .foot a { color:var(--teal); font-weight:750; text-decoration:none; }
+    @media(max-width:900px) { .games { grid-template-columns:repeat(2,minmax(0,1fr)); } .hero-art { grid-template-columns:repeat(5,1fr); } }
+    @media(max-width:600px) {
+      .wrap { width:calc(100% - 28px); }
+      .utility-in { font-size:.7rem; }
+      .utility-in span:last-child { display:none; }
+      .nav { min-height:66px; }
+      .brand { font-size:1rem; }
+      .navlinks { gap:12px; }
+      .navlinks a { font-size:.76rem; }
+      .hero { min-height:370px; }
+      .hero-art { grid-template-columns:repeat(3,1fr); gap:7px; }
+      .hero-tile { min-height:120px; border-width:3px; }
+      .hero-copy { padding:52px 0; }
+      .section { padding:48px 0; }
+      .games { grid-template-columns:1fr; gap:14px; }
+      .poster { min-height:175px; }
       .toolbar { align-items:start; flex-direction:column; gap:3px; }
       .foot { flex-direction:column; }
     }
-    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto !important; transition-duration:.01ms !important; } }
+    @media(prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; transition-duration:.01ms!important; } }
   </style>
 </head>
 <body>
-  <header class="wrap top">
-    <a class="brand" href="./"><span class="brand-icon" aria-hidden="true">✦</span><span>김진서의 게임 아카이브</span></a>
-    <a class="back" href="./">← 메인페이지</a>
+  <div class="utility"><div class="wrap utility-in"><span>🎮 요즘 플레이할 게임을 찾아보세요</span><span><a href="./">메인 아카이브로 돌아가기 →</a></span></div></div>
+  <header class="wrap nav">
+    <a class="brand" href="./"><span class="brand-mark" aria-hidden="true">✦</span><span>KJS GAME PARK</span></a>
+    <nav class="navlinks" aria-label="주 메뉴"><a href="./">메인페이지</a><a class="active" href="#game-list">Steam 게임 30선</a></nav>
   </header>
-  <main class="wrap">
-    <section class="hero" aria-labelledby="page-title">
-      <span class="eyebrow">STEAM COMMUNITY PICKS</span>
-      <h1 id="page-title">요즘 많이 플레이하는<br>스팀 게임 30선</h1>
-      <p class="lead">액션, 생존, 전략, 힐링까지 장르별로 골라봤어요. 게임 제목과 소개를 살펴보고, 관심이 생기면 스팀 상점에서 자세한 정보와 가격을 확인해 보세요.</p>
+
+  <section class="hero" aria-labelledby="page-title">
+    <div class="hero-art" aria-hidden="true">
+      <span class="hero-tile">🛡️</span><span class="hero-tile">🎯</span><span class="hero-tile">🪂</span><span class="hero-tile">🧨</span><span class="hero-tile">🪓</span><span class="hero-tile">🤖</span><span class="hero-tile">⚡</span>
+      <span class="hero-tile">☄️</span><span class="hero-tile">🦸</span><span class="hero-tile">🧱</span><span class="hero-tile">🌌</span><span class="hero-tile">🌀</span><span class="hero-tile">🃏</span><span class="hero-tile">🔥</span>
+      <span class="hero-tile">🌫️</span><span class="hero-tile">🧟</span><span class="hero-tile">🌱</span><span class="hero-tile">🌃</span><span class="hero-tile">🐉</span><span class="hero-tile">🎲</span><span class="hero-tile">🐺</span>
+    </div>
+    <div class="shade"></div>
+    <div class="hero-copy">
+      <div class="crumb">홈　›　Steam 인기 게임</div>
+      <div class="eyebrow">STEAM COMMUNITY PICKS</div>
+      <h1 id="page-title">다음 플레이를 찾고 있나요?<br>인기 게임 30선을 만나보세요</h1>
+      <p>매일 즐기는 멀티플레이부터 오래 빠져드는 모험까지, 다양한 장르의 게임을 골라봤습니다.</p>
       <div class="source-note">
-        <span>2026년 10월 21일 차트 참고 · 소개 목록은 게임 중심으로 선별</span>
-        <span>인기 순위는 실시간으로 바뀔 수 있습니다.</span>
-        <span>자료: <a href="https://store.steampowered.com/charts/mostplayed" target="_blank" rel="noopener noreferrer">Steam 공식 인기 차트 ↗</a> · <a href="https://steamcharts.com/top" target="_blank" rel="noopener noreferrer">SteamCharts 동시 접속자 순위 ↗</a></span>
+        <span>2026년 10월 21일 인기 차트 참고</span>
+        <span>순위는 계속 바뀔 수 있어요</span>
+        <span><a href="https://store.steampowered.com/charts/mostplayed" target="_blank" rel="noopener noreferrer">Steam 공식 차트 ↗</a> · <a href="https://steamcharts.com/top" target="_blank" rel="noopener noreferrer">동시 접속자 순위 ↗</a></span>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section class="section wrap" aria-labelledby="intro-title">
+      <div class="heading">
+        <span class="eyebrow">PICK YOUR NEXT GAME</span>
+        <h2 id="intro-title">취향에 맞는 게임을 골라보세요</h2>
+        <p>인기 차트의 흐름을 참고해 게임 중심으로 정리했습니다. 가격과 자세한 정보는 스팀 상점에서 확인할 수 있습니다.</p>
+        <div class="summary"><span>30개 게임</span><span>한 페이지에 10개</span><span>총 3페이지</span></div>
       </div>
     </section>
 
-    <section aria-labelledby="list-title">
-      <div class="toolbar">
-        <h2 id="list-title">인기 게임 둘러보기</h2>
-        <span class="result-count" id="result-count" aria-live="polite">게임 30개 · 1페이지</span>
+    <section class="list-area" id="game-list" aria-labelledby="list-title">
+      <div class="wrap section">
+        <div class="toolbar">
+          <h2 id="list-title">인기 게임 둘러보기</h2>
+          <span class="result-count" id="result-count" aria-live="polite">게임 30개 · 1페이지</span>
+        </div>
+        <div class="games" id="games" aria-live="polite"></div>
+        <nav class="pagination" id="pagination" aria-label="게임 목록 페이지"></nav>
       </div>
-      <div class="games" id="games" aria-live="polite"></div>
-      <nav class="pagination" id="pagination" aria-label="게임 목록 페이지"></nav>
     </section>
   </main>
-  <footer>
-    <div class="wrap foot">
-      <p>© 2026 김진서 · Steam 인기 게임 소개</p>
-      <p><a href="https://store.steampowered.com/charts/mostplayed" target="_blank" rel="noopener noreferrer">Steam 인기 차트 확인 ↗</a></p>
-    </div>
-  </footer>
+
+  <footer><div class="wrap foot"><p>© 2026 김진서 · Steam 인기 게임 소개</p><p><a href="./">메인 아카이브로 돌아가기 ↗</a></p></div></footer>
 
   <script>
     const games = [
-      { name:"Dota 2", genre:"MOBA · 팀 전략", icon:"🛡️", desc:"영웅을 골라 팀과 함께 전장을 장악하는 깊이 있는 전략 게임." },
-      { name:"Counter-Strike 2", genre:"전술 FPS", icon:"🎯", desc:"정밀한 사격과 팀 전술이 승부를 가르는 대표적인 경쟁 슈터." },
-      { name:"PUBG: BATTLEGROUNDS", genre:"배틀로얄 · 슈터", icon:"🪂", desc:"넓은 전장에서 장비를 모으고 최후의 생존 팀을 노려보세요." },
-      { name:"Team Fortress 2", genre:"팀 기반 FPS", icon:"🧨", desc:"개성 강한 병과와 유쾌한 분위기가 매력인 팀 대전 슈터." },
-      { name:"Valheim", genre:"생존 · 탐험", icon:"🪓", desc:"북유럽 신화의 세계에서 집을 짓고 보스를 찾아 떠나는 생존 모험." },
-      { name:"ARC Raiders", genre:"협동 액션 · 탈출 슈터", icon:"🤖", desc:"위험한 기계가 지배하는 미래에서 장비를 챙겨 탈출하는 팀 액션." },
-      { name:"Apex Legends", genre:"히어로 배틀로얄", icon:"⚡", desc:"고유한 능력을 가진 레전드와 빠른 이동이 돋보이는 배틀로얄." },
-      { name:"HELLDIVERS 2", genre:"협동 슈터", icon:"☄️", desc:"친구들과 함께 임무를 수행하며 은하계 전투에 뛰어드는 협동 액션." },
-      { name:"Marvel Rivals", genre:"히어로 슈터", icon:"🦸", desc:"마블 영웅과 빌런으로 팀을 꾸려 맞붙는 6대6 액션 게임." },
-      { name:"Tom Clancy’s Rainbow Six Siege", genre:"전술 슈터", icon:"🧱", desc:"장비와 정보, 팀워크를 활용해 공격과 방어를 설계하는 전술 FPS." },
-      { name:"Warframe", genre:"온라인 액션 RPG", icon:"🌌", desc:"빠른 전투와 다양한 장비 조합으로 임무를 수행하는 무료 액션 RPG." },
-      { name:"Overwatch 2", genre:"팀 히어로 슈터", icon:"🌀", desc:"역할과 영웅 조합을 맞춰 목표를 차지하는 팀 기반 슈터." },
-      { name:"Slay the Spire 2", genre:"덱 빌딩 로그라이크", icon:"🃏", desc:"카드를 모으고 경로를 선택하며 매번 다른 탑 공략에 도전하세요." },
-      { name:"Rust", genre:"멀티플레이 생존", icon:"🔥", desc:"자원을 모아 기지를 세우고 다른 생존자와 경쟁하는 오픈월드 게임." },
-      { name:"Enshrouded", genre:"생존 액션 RPG", icon:"🌫️", desc:"안개에 뒤덮인 세계를 탐험하고 건설하며 왕국을 되찾는 모험." },
-      { name:"Project Zomboid", genre:"좀비 생존 샌드박스", icon:"🧟", desc:"좀비 사태 속에서 식량과 거점을 관리하는 현실적인 생존 시뮬레이션." },
-      { name:"Dead by Daylight", genre:"비대칭 호러", icon:"🔦", desc:"생존자 네 명과 살인마 한 명이 맞붙는 긴장감 있는 추격전." },
-      { name:"Stardew Valley", genre:"농장 생활 RPG", icon:"🌱", desc:"농장을 가꾸고 마을 사람들과 교류하며 나만의 일상을 만들어 보세요." },
-      { name:"Delta Force", genre:"전술 FPS", icon:"🪖", desc:"대규모 전투와 분대 임무를 즐기는 현대 군사 슈터." },
-      { name:"Cyberpunk 2077", genre:"오픈월드 액션 RPG", icon:"🌃", desc:"나이트 시티에서 용병 V의 이야기를 만들어 가는 미래 오픈월드 RPG." },
-      { name:"Baldur’s Gate 3", genre:"턴제 CRPG", icon:"🐉", desc:"선택과 주사위 판정으로 이야기가 달라지는 파티 기반 판타지 RPG." },
-      { name:"Geometry Dash", genre:"리듬 · 플랫포머", icon:"🔺", desc:"음악에 맞춰 장애물을 넘고 직접 만든 스테이지도 즐기는 리듬 게임." },
-      { name:"Left 4 Dead 2", genre:"협동 좀비 FPS", icon:"🧟‍♂️", desc:"친구들과 함께 좀비 무리를 뚫고 탈출하는 고전 협동 슈터." },
-      { name:"The Binding of Isaac: Rebirth", genre:"로그라이크 액션", icon:"🗝️", desc:"무작위 아이템과 방을 돌파하며 매번 새로운 지하 모험을 즐기세요." },
-      { name:"Destiny 2", genre:"온라인 루터 슈터", icon:"✨", desc:"수호자가 되어 우주를 탐험하고 장비를 모으는 온라인 액션 게임." },
-      { name:"Palworld", genre:"오픈월드 생존 · 수집", icon:"🐾", desc:"신비한 생물과 함께 탐험하고 제작하며 기지를 키워 보세요." },
-      { name:"DayZ", genre:"하드코어 생존", icon:"🥫", desc:"감염자와 추위, 다른 생존자 사이에서 오래 버텨야 하는 오픈월드." },
-      { name:"War Thunder", genre:"전차 · 항공 전투", icon:"✈️", desc:"전차와 항공기, 함선을 조종해 펼치는 대규모 전투 시뮬레이션." },
-      { name:"The Witcher 3: Wild Hunt", genre:"오픈월드 판타지 RPG", icon:"🐺", desc:"괴물 사냥꾼 게롤트가 전쟁과 운명 속에서 펼치는 대서사시." },
-      { name:"Terraria", genre:"샌드박스 · 탐험", icon:"⛏️", desc:"땅을 파고 만들고 싸우며 거대한 2D 세계를 자유롭게 탐험하세요." }
+      { name:"Dota 2", genre:"MOBA · 팀 전략", icon:"🛡️", colors:["#314e73","#75aabc"], desc:"영웅을 골라 팀과 함께 전장을 장악하는 깊이 있는 전략 게임." },
+      { name:"Counter-Strike 2", genre:"전술 FPS", icon:"🎯", colors:["#98713c","#d5af62"], desc:"정밀한 사격과 팀 전술이 승부를 가르는 대표적인 경쟁 슈터." },
+      { name:"PUBG: BATTLEGROUNDS", genre:"배틀로얄 · 슈터", icon:"🪂", colors:["#7f543e","#c4a16e"], desc:"넓은 전장에서 장비를 모으고 최후의 생존 팀을 노려보세요." },
+      { name:"Team Fortress 2", genre:"팀 기반 FPS", icon:"🧨", colors:["#a95c38","#e7b454"], desc:"개성 강한 병과와 유쾌한 분위기가 매력인 팀 대전 슈터." },
+      { name:"Valheim", genre:"생존 · 탐험", icon:"🪓", colors:["#47654a","#9b9c58"], desc:"북유럽 신화의 세계에서 집을 짓고 보스를 찾아 떠나는 생존 모험." },
+      { name:"ARC Raiders", genre:"협동 액션 · 탈출 슈터", icon:"🤖", colors:["#436475","#a3a276"], desc:"위험한 기계가 지배하는 미래에서 장비를 챙겨 탈출하는 팀 액션." },
+      { name:"Apex Legends", genre:"히어로 배틀로얄", icon:"⚡", colors:["#994d47","#df9c65"], desc:"고유한 능력을 가진 레전드와 빠른 이동이 돋보이는 배틀로얄." },
+      { name:"HELLDIVERS 2", genre:"협동 슈터", icon:"☄️", colors:["#586348","#b2a15b"], desc:"친구들과 함께 임무를 수행하며 은하계 전투에 뛰어드는 협동 액션." },
+      { name:"Marvel Rivals", genre:"히어로 슈터", icon:"🦸", colors:["#445e87","#ba5862"], desc:"마블 영웅과 빌런으로 팀을 꾸려 맞붙는 6대6 액션 게임." },
+      { name:"Tom Clancy’s Rainbow Six Siege", genre:"전술 슈터", icon:"🧱", colors:["#3f5d62","#9da994"], desc:"장비와 정보, 팀워크를 활용해 공격과 방어를 설계하는 전술 FPS." },
+      { name:"Warframe", genre:"온라인 액션 RPG", icon:"🌌", colors:["#4d467b","#8fa7bf"], desc:"빠른 전투와 다양한 장비 조합으로 임무를 수행하는 무료 액션 RPG." },
+      { name:"Overwatch 2", genre:"팀 히어로 슈터", icon:"🌀", colors:["#477987","#df9e48"], desc:"역할과 영웅 조합을 맞춰 목표를 차지하는 팀 기반 슈터." },
+      { name:"Slay the Spire 2", genre:"덱 빌딩 로그라이크", icon:"🃏", colors:["#4d394c","#bf8065"], desc:"카드를 모으고 경로를 선택하며 매번 다른 탑 공략에 도전하세요." },
+      { name:"Rust", genre:"멀티플레이 생존", icon:"🔥", colors:["#7a5141","#c1834c"], desc:"자원을 모아 기지를 세우고 다른 생존자와 경쟁하는 오픈월드 게임." },
+      { name:"Enshrouded", genre:"생존 액션 RPG", icon:"🌫️", colors:["#536c68","#a2aa81"], desc:"안개에 뒤덮인 세계를 탐험하고 건설하며 왕국을 되찾는 모험." },
+      { name:"Project Zomboid", genre:"좀비 생존 샌드박스", icon:"🧟", colors:["#4a5852","#a0956d"], desc:"좀비 사태 속에서 식량과 거점을 관리하는 현실적인 생존 시뮬레이션." },
+      { name:"Dead by Daylight", genre:"비대칭 호러", icon:"🔦", colors:["#4c414b","#9e5854"], desc:"생존자 네 명과 살인마 한 명이 맞붙는 긴장감 있는 추격전." },
+      { name:"Stardew Valley", genre:"농장 생활 RPG", icon:"🌱", colors:["#598b68","#c3b65f"], desc:"농장을 가꾸고 마을 사람들과 교류하며 나만의 일상을 만들어 보세요." },
+      { name:"Delta Force", genre:"전술 FPS", icon:"🪖", colors:["#58654d","#b0a36b"], desc:"대규모 전투와 분대 임무를 즐기는 현대 군사 슈터." },
+      { name:"Cyberpunk 2077", genre:"오픈월드 액션 RPG", icon:"🌃", colors:["#7a4f75","#dd9c4d"], desc:"나이트 시티에서 용병 V의 이야기를 만들어 가는 미래 오픈월드 RPG." },
+      { name:"Baldur’s Gate 3", genre:"턴제 CRPG", icon:"🐉", colors:["#454675","#b38359"], desc:"선택과 주사위 판정으로 이야기가 달라지는 파티 기반 판타지 RPG." },
+      { name:"Geometry Dash", genre:"리듬 · 플랫포머", icon:"🔺", colors:["#398c86","#65bdba"], desc:"음악에 맞춰 장애물을 넘고 직접 만든 스테이지도 즐기는 리듬 게임." },
+      { name:"Left 4 Dead 2", genre:"협동 좀비 FPS", icon:"🧟‍♂️", colors:["#726344","#ae7551"], desc:"친구들과 함께 좀비 무리를 뚫고 탈출하는 고전 협동 슈터." },
+      { name:"The Binding of Isaac: Rebirth", genre:"로그라이크 액션", icon:"🗝️", colors:["#69586a","#bc8d65"], desc:"무작위 아이템과 방을 돌파하며 매번 새로운 지하 모험을 즐기세요." },
+      { name:"Destiny 2", genre:"온라인 루터 슈터", icon:"✨", colors:["#56617e","#a8a5b9"], desc:"수호자가 되어 우주를 탐험하고 장비를 모으는 온라인 액션 게임." },
+      { name:"Palworld", genre:"오픈월드 생존 · 수집", icon:"🐾", colors:["#537e6d","#9fc381"], desc:"신비한 생물과 함께 탐험하고 제작하며 기지를 키워 보세요." },
+      { name:"DayZ", genre:"하드코어 생존", icon:"🥫", colors:["#555b4a","#a49a65"], desc:"감염자와 추위, 다른 생존자 사이에서 오래 버텨야 하는 오픈월드." },
+      { name:"War Thunder", genre:"전차 · 항공 전투", icon:"✈️", colors:["#596951","#9da384"], desc:"전차와 항공기, 함선을 조종해 펼치는 대규모 전투 시뮬레이션." },
+      { name:"The Witcher 3: Wild Hunt", genre:"오픈월드 판타지 RPG", icon:"🐺", colors:["#52605b","#b08b59"], desc:"괴물 사냥꾼 게롤트가 전쟁과 운명 속에서 펼치는 대서사시." },
+      { name:"Terraria", genre:"샌드박스 · 탐험", icon:"⛏️", colors:["#568a59","#95bb68"], desc:"땅을 파고 만들고 싸우며 거대한 2D 세계를 자유롭게 탐험하세요." }
     ];
 
     const perPage = 10;
@@ -166,36 +210,40 @@
       visible.forEach((game, index) => {
         const card = document.createElement("article");
         card.className = "game";
-
+        const poster = document.createElement("div");
+        poster.className = "poster";
+        poster.style.setProperty("--c1", game.colors[0]);
+        poster.style.setProperty("--c2", game.colors[1]);
         const rank = document.createElement("span");
-        rank.className = "rank";
+        rank.className = "poster-rank";
         rank.textContent = "PICK " + String(start + index + 1).padStart(2, "0");
-
         const icon = document.createElement("span");
-        icon.className = "game-icon";
+        icon.className = "poster-icon";
         icon.setAttribute("aria-hidden", "true");
         icon.textContent = game.icon;
+        const label = document.createElement("span");
+        label.className = "poster-label";
+        label.textContent = "STEAM COMMUNITY PICKS";
+        poster.append(rank, icon, label);
 
-        const info = document.createElement("div");
-        info.className = "game-info";
-        const title = document.createElement("h3");
-        title.textContent = game.name;
+        const copy = document.createElement("div");
+        copy.className = "game-copy";
         const genre = document.createElement("span");
         genre.className = "genre";
         genre.textContent = game.genre;
+        const title = document.createElement("h3");
+        title.textContent = game.name;
         const description = document.createElement("p");
         description.textContent = game.desc;
-        info.append(title, genre, description);
-
         const link = document.createElement("a");
         link.className = "store-link";
         link.href = "https://store.steampowered.com/search/?term=" + encodeURIComponent(game.name);
         link.target = "_blank";
         link.rel = "noopener noreferrer";
-        link.textContent = "Steam에서 보기 ↗";
+        link.textContent = "Steam 상점에서 더 보기 ↗";
         link.setAttribute("aria-label", game.name + " Steam 상점 검색 결과 열기");
-
-        card.append(rank, icon, info, link);
+        copy.append(genre, title, description, link);
+        card.append(poster, copy);
         grid.append(card);
       });
 
@@ -212,10 +260,8 @@
         url.searchParams.set("page", String(currentPage));
         history.pushState({ page: currentPage }, "", url);
       }
-      document.getElementById("list-title").focus({ preventScroll: true });
     }
 
-    document.getElementById("list-title").tabIndex = -1;
     window.addEventListener("popstate", () => {
       const requested = Number(new URLSearchParams(location.search).get("page")) || 1;
       showPage(requested, false);
