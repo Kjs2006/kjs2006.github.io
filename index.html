@@ -105,6 +105,22 @@
     .footer-inner { display: flex; justify-content: space-between; gap: 16px; padding: 25px 0 34px; font-size: .86rem; }
     .footer-inner p { margin: 0; }
     .footer-inner a { color: var(--accent); text-decoration: none; }
+
+    .steam-promo {
+      position: relative; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 25px;
+      margin: 2px 0 30px; padding: clamp(22px, 4vw, 38px);
+      overflow: hidden; border: 1px solid rgba(124, 151, 255, .24); border-radius: 22px;
+      background: radial-gradient(ellipse at 88% 10%, rgba(124, 151, 255, .2), transparent 20rem),
+                  linear-gradient(120deg, rgba(31, 38, 68, .96), rgba(22, 25, 43, .96));
+    }
+    .steam-promo h2 { margin: 0 0 8px; font-size: clamp(1.35rem, 3vw, 1.9rem); letter-spacing: -.04em; }
+    .steam-promo p { max-width: 620px; margin: 0; color: var(--muted); }
+    .steam-kicker { display: inline-block; margin-bottom: 10px; color: #aebaff; font-size: .78rem; font-weight: 800; letter-spacing: .12em; }
+    .steam-stats { display: flex; gap: 8px; margin-top: 18px; }
+    .steam-stats span { padding: 6px 10px; border: 1px solid var(--line); border-radius: 999px; color: #d8dbef; font-size: .78rem; }
+    .steam-cta { white-space: nowrap; }
+    @media (max-width: 700px) { .steam-promo { grid-template-columns: 1fr; } .steam-cta { width: 100%; } }
+
     @media (max-width: 850px) { .games { grid-template-columns: repeat(2, minmax(0, 1fr)); } .hero { padding-top: 74px; } }
     @media (max-width: 560px) {
       .wrap { width: min(100% - 28px, 480px); }
@@ -188,6 +204,19 @@
         <span class="play">게임 플레이 <span class="arrow" aria-hidden="true">→</span></span>
       </a>
     </nav>
+
+
+    <section class="steam-promo" aria-labelledby="steam-title">
+      <div>
+        <span class="steam-kicker">STEAM GAME PICKS</span>
+        <h2 id="steam-title">요즘 어떤 게임이 인기일까?</h2>
+        <p>스팀에서 많이 플레이되는 게임들을 장르와 함께 소개합니다. 관심 가는 게임을 발견하고 스팀 상점에서 더 살펴보세요.</p>
+        <div class="steam-stats" aria-label="소개 페이지 구성">
+          <span>게임 30선</span><span>10개씩 보기</span><span>3페이지</span>
+        </div>
+      </div>
+      <a class="button button-primary steam-cta" href="steam-games.html">인기 게임 둘러보기 <span aria-hidden="true">→</span></a>
+    </section>
 
     <aside class="note">
       <span class="note-icon" aria-hidden="true">💡</span>
